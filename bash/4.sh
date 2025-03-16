@@ -3,28 +3,28 @@
 planet=$1
 
 case $planet in
-	"$Mercury")
+	"Mercury")
 		echo "0"
 		;;
-	"$Venus")
+	"Venus")
 		echo "0"
 		;;
-	"$Earth")
+	"Earth")
 		echo "1"
 		;;
-	"$Mars")
+	"Mars")
 		echo "2"
 		;;
-	"$Jupiter")
+	"Jupiter")
 		echo "98"
 		;;
-	"$Saturn")
+	"Saturn")
 		echo "83"
 		;;
-	"$Uranus")
+	"Uranus")
 		echo "27"
 		;;
-	"$Neptune")
+	"Neptune")
 		echo "14"
 		;;
 	*)

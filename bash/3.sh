@@ -2,10 +2,10 @@
 
 for file in "$@";
 do
-    	if [ -l "$file" ]; 
+    	if [ -f "$file" ]; 
 	then
-		count=$(wc -l $path)
-       		echo "$file => => $count"
+		count=$(wc -l < $file)
+       		echo "$file => $count"
 	else
         	echo "$file => not found"
 	fi
