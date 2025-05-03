@@ -60,7 +60,7 @@ jobs:
         run: |
           docker run --rm \
             ${{ secrets.DOCKERHUB_USERNAME }}/administration:latest \
-            sh -c "make test"
+            sh -c "make install-dev && make test"
 
 #  deploy:
 #    runs-on: ubuntu-latest
