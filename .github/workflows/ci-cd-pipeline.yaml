@@ -57,9 +57,10 @@ jobs:
       - name: Run tests
         run: |
           docker run --rm \
-            -e DATABASE_URL="${{ secrets.DATABASE_URL }} \
+            --network host \
+            -e DATABASE_URL=${{ secrets.DATABASE_URL }} \
             ${{ secrets.DOCKERHUB_USERNAME }}/administration:latest \
-            sh -c "make install-dev && make test"
+            sh -c "while ! nc -z localhost 5432; do sleep 1; done && make install-dev && make test"
 
 #  deploy:
 #    runs-on: ubuntu-latest
