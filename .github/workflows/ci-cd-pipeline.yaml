@@ -73,7 +73,7 @@ jobs:
       - name: Deploy to server
         run: |
           ssh -o StrictHostKeyChecking=no \
-            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} -p ${{ secrets.SSH_PORT }} \
             "podman pull ${{ secrets.DOCKERHUB_USERNAME }}/administration:latest \
              && podman stop main-container || true \
              && podman rm main-container || true \
