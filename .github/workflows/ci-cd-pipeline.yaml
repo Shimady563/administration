@@ -47,8 +47,6 @@ jobs:
           --health-interval=10s
           --health-timeout=5s
           --health-retries=5
-    env:
-      DATABASE_URL: ${{ secrets.DATABASE_URL }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -59,6 +57,7 @@ jobs:
       - name: Run tests
         run: |
           docker run --rm \
+            -e DATABASE_URL="${{ secrets.DATABASE_URL }} \
             ${{ secrets.DOCKERHUB_USERNAME }}/administration:latest \
             sh -c "make install-dev && make test"
 
