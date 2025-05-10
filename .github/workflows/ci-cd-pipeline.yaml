@@ -69,7 +69,7 @@ jobs:
   deploy:
     runs-on: self-hosted
     env:
-      container-name: app
+      CONTAINER_NAME: app
     needs: [ test ]
     steps:
       - name: Deploy to server
@@ -77,10 +77,10 @@ jobs:
           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
             -p ${{ secrets.SSH_PORT }} \
             "podman pull ${{ secrets.DOCKERHUB_USERNAME }}/administration:latest \
-             && podman stop $container-name || true \
-             && podman rm $container-name || true \
+             && podman stop $CONTAINER_NAME || true \
+             && podman rm $CONTAINER_NAME || true \
              && podman run \
                 --network host \
-                --name $container-name \
+                --name $CONTAINER_NAME \
                 -e DATABASE_URL='${{ secrets.DATABASE_URL }}' \
                 ${{ secrets.DOCKERHUB_USERNAME }}/administration:latest"
