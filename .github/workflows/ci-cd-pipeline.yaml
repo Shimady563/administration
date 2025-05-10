@@ -79,7 +79,7 @@ jobs:
             "podman pull ${{ secrets.DOCKERHUB_USERNAME }}/administration:latest \
              && podman stop $CONTAINER_NAME || true \
              && podman rm $CONTAINER_NAME || true \
-             && podman run \
+             && podman run -d \
                 --network host \
                 --name $CONTAINER_NAME \
                 -e DATABASE_URL='${{ secrets.DATABASE_URL }}' \
