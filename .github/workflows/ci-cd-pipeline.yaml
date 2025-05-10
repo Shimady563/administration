@@ -72,9 +72,14 @@ jobs:
       CONTAINER_NAME: app
     needs: [ test ]
     steps:
+      - name: Set up ssh agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - name: Deploy to server
         run: |
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+          ssh -o StrictHostKeyChecking=no \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
             -p ${{ secrets.SSH_PORT }} \
             "podman pull ${{ secrets.DOCKERHUB_USERNAME }}/administration:latest \
              && podman stop $CONTAINER_NAME || true \
