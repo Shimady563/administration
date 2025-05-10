@@ -3,7 +3,7 @@ WORKDIR /build
 RUN apk add --no-cache make
 COPY ./Makefile ./Makefile
 COPY ./pyproject.toml ./pyproject.toml
-RUN make install
+RUN make install && make install-dev
 
 
 FROM python:3.10-alpine AS runtime

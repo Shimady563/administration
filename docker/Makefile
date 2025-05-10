@@ -4,7 +4,7 @@ install:
 	pip install --prefix=/install .
 
 install-dev:
-	pip install ".[test]"
+	pip install --prefix=/install ".[test]"
 
 test:
 	pytest tests
